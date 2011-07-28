@@ -1,0 +1,6 @@
+gmail:
+    imap_server: imap.gmail.com
+    imap_port: 993
+    folder: INBOX
+    credentials:
+        username: yo_id@gmail.com
