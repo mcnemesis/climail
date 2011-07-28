@@ -12,3 +12,31 @@ for *us* all :-) Don't know whether I'll totally pull it off, but you
 can join :-) And am putting this on git for *us* all!
 
 -- Nemesis Fixx (july 2011)
+
+----------------------------
+With a working version of climail ready, check just how cool it is to check mail now:
+
+Simple usage : ./climail.rb 
+
+That is assuming you using gmail, and have specified imap_server,imap_port, etc in the conf.yaml in the same directory as climail
+
+Flexible usage: ./climail.rb -u joe@jkfotis.com -f Work -c myconf.yaml
+
+In all the above, climail will prompt you for a password, unless to explicitly (unsecure) specify it via commandline using 
+
+./climail -p PASSWORD
+
+For more options, use -h or --help, or read the source :-) and extend it too..
+
+----------------------------
+if you are a regular user of climail, u might want to create an alias command in your bashrc, so that u don't have to
+recall, retype everything everytime. After setting their alias for climail to 'gmail', 
+here is how someone is checking their unread mail right now:
+
+mcnemesis@alien > gmail
+28 Jul,2011 14:47 PM | Popular Science |  The Goods: August 2011's Hottest Gadgets
+28 Jul,2011 15:09 PM | roy mukasa |  Orange competition
+28 Jul,2011 15:08 PM | "Cosmos Online" |  The death of an icon
+
+isn't that cool?!
+I love Ruby :-)
