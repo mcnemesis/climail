@@ -45,6 +45,11 @@ optparse = OptionParser.new do |opts|
         options[:password] = password
     end
 
+    options[:user] = nil
+    opts.on('-u','--username USER','User to use') do |user|
+        options[:user] = user
+    end
+
     #options[:show_body] = false
     #opts.on('-b','--show_body','Show Email Body') do
     #    options[:show_body] = true
@@ -60,10 +65,6 @@ end
 #parse commandline options...
 optparse.parse!
 
-#if we still didn't get a password, prompt the user for one
-if options[:password].nil?:
-        options[:password] = get_password 
-end
 
 begin
 
@@ -75,14 +76,33 @@ begin
 
     cred = c['credentials']
 
+    #if we still didn't get a password, prompt the user for one
+    if options[:password].nil?:
+            options[:password] = get_password 
+    end
+
+    user = nil
+
+    if options[:user].nil?
+        if cred['username'].nil?
+            print "\r\nUsername : "
+            user = gets.chomp
+        else
+            user = cred['username']
+        end
+    else
+        user = options[:user]
+    end
+
+
     folder = c['folder'] || options[:folder]
     folder = options[:folder] if options[:override_folder]
 
     imap = Net::IMAP.new(c['imap_server'],c['imap_port'],true)
     puts "Connected to server '#{c['imap_server']}:#{c['imap_port']}'" if options[:verbose]
 
-    imap.login(cred['username'], options[:password])
-    puts "Logged in as  '#{cred['username']}'" if options[:verbose]
+    imap.login(user, options[:password])
+    puts "Logged in as  '#{user}'" if options[:verbose]
 
     imap.select(folder) #specify mail folder to read from
     puts "Reading from IMAP folder  '#{folder}'" if options[:verbose]
@@ -92,7 +112,7 @@ begin
     subject_key = "BODY[HEADER.FIELDS (SUBJECT)]"
     from_key = "BODY[HEADER.FIELDS (FROM)]"
     date_key = "INTERNALDATE"
-    body_key = "RFC822.TEXT"
+    #body_key = "RFC822.TEXT"
     imap.search(["UNSEEN"]).each do |message_id|
       sub = imap.fetch(message_id, subject_key)[0]
       date = imap.fetch(message_id, date_key)[0]
