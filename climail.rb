@@ -124,7 +124,7 @@ begin
       #now format our output nicely...
       #but, apparently, gmail's internal dates are not ok for my time-zone
       #so some time tweaking is necessary too
-      date = DateTime.parse(date.attr[date_key]).new_offset(DateTime.now.offset).strftime("%d %b,%Y %I:%M %p")
+      date = DateTime.parse(date.attr[date_key]).new_offset(DateTime.now.offset).strftime("%a %d %b,%Y %I:%M %p")
       subject = /Subject:(.*)$/.match(sub.attr[subject_key]).captures[0].strip
       from = /From:([^<]*)[^<]/.match(from.attr[from_key]).captures[0].strip
       puts "#{date} | #{from} |  #{subject}"

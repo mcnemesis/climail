@@ -20,7 +20,7 @@ Simple usage : ./climail.rb
 
 That is assuming you using gmail, and have specified imap_server,imap_port, etc in the conf.yaml in the same directory as climail
 
-Flexible usage: ./climail.rb -u joe@jkfotis.com -f Work -c myconf.yaml
+Flexible usage: ./climail.rb -u jo@jkfotis.com -f Work -c myconf.yaml
 
 In all the above, climail will prompt you for a password, unless to explicitly (unsecure) specify it via commandline using 
 
@@ -40,3 +40,38 @@ mcnemesis@alien > gmail
 
 isn't that cool?!
 I love Ruby :-)
+
+***************************
+QUICK TIPS:
+1. climail requires Ruby to be installed on yo machine 
+ (get ruby here : www.ruby-lang.org/en/downloads/, or use yo package manager on Linux to get it )
+2. you need to have RubyGems installed too -  we need it to install "highline" a required gem
+ (get RubyGems here : rubygems.org/pages/download)
+
+NOTE : the above two packages are very likely to already exist on a typical Linux / Unix box
+
+3. install the highline gem with this command on your terminal
+
+ gem install highline
+
+4. edit "conf.yaml" to set any different settings u have, in particular, set the "username" field to say your gmail username
+  (incase u dont want to out the username in the conf.yaml file, u'll have to specify it via the commandline with the "-u" option, or some given prompt)
+
+After the above, you are ready to rock!
+
+BONUS TRICK:
+
+(unsafe though if someonelse gets access to yo computer)
+1. how to use climail by just typing "gmail" at the commandline!
+    1. open your bashrc file (e.g /etc/bash.bashrc)
+    2. add an alias command "gmail" like this:
+
+    alias gmail="/path/to/your/climail.rb -p your_password_here -c /path/to/your/conf.yaml"
+
+    3. You might have to add in a "sudo" before the climail.rb part on some systems
+
+    alias gmail="sudo /path/to/your/climail.rb -p your_password_here -c /path/to/your/conf.yaml"
+
+    4. ok, so how do u use this? In any new terminal / shell, type "gmail" (see earlier demo above)
+
+In case of any difficulties or suggestions, please contact me via github, Google+ or gmail : nemesisfixxed[at]gmail[dot]com 
