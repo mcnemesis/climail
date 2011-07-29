@@ -46,7 +46,7 @@ QUICK TIPS:
 1. climail requires Ruby to be installed on yo machine 
  (get ruby here : www.ruby-lang.org/en/downloads/, or use yo package manager on Linux to get it )
 2. you need to have RubyGems installed too -  we need it to install "highline" a required gem
- (get RubyGems here : rubygems.org/pages/download)
+ (get RubyGems here : http://rubygems.org/pages/download)
 
 NOTE : the above two packages are very likely to already exist on a typical Linux / Unix box
 
