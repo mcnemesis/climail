@@ -136,6 +136,8 @@ begin
       #end
 
       #ensure the message is still 'unseen' on the server
+      #as in, if u want the email to still appear 'Unread' when u check it in your browser / with climail later on
+      #b'coz climail is meant to help u peek at new mail, not read it - but u could try to make it do that (the text is a bit ugly)
       imap.store(message_id,'-FLAGS',[:Seen])
     end
 
