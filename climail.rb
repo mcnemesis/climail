@@ -7,6 +7,10 @@ require 'rubygems'
 require 'highline/import'
 require 'date'
 
+#nothing is perfect in this go-damn imperfect world :-)
+#so, should u hv the fun to extend this, pse also consider using 
+#the RFC specification of the IMAP Protocol here : http://tools.ietf.org/html/rfc1730
+#otherwise, have fun... or contact me (nemesisfixxed@gmail.com)
 
 options = {}
 
@@ -65,9 +69,9 @@ end
 #parse commandline options...
 optparse.parse!
 
-
+#shit might go wrong!
+#programming is not an 'exact' science :-)
 begin
-
     puts "Using configuration file '#{options[:config_file]}'" if options[:verbose]
     config = YAML.load(File.open(options[:config_file]))
 
@@ -118,6 +122,8 @@ begin
       date = imap.fetch(message_id, date_key)[0]
       from = imap.fetch(message_id, from_key)[0]
       #now format our output nicely...
+      #but, apparently, gmail's internal dates are not ok for my time-zone
+      #so some time tweaking is necessary too
       date = DateTime.parse(date.attr[date_key]).strftime("%d %b,%Y %H:%M %p")
       subject = /Subject:(.*)$/.match(sub.attr[subject_key]).captures[0].strip
       from = /From:([^<]*)[^<]/.match(from.attr[from_key]).captures[0].strip
@@ -139,5 +145,7 @@ begin
 
     puts "Disconnected from server. Bye" if options[:verbose]
 rescue
+    #who is to blame?
     puts "-- ERROR --"
 end
+#wasn't it nice?
